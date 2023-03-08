@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.0.3</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.cdot</groupId>
+	<artifactId>BharatKosh-NTRP-Integration</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>BharatKosh-NTRP-Integration</name>
+	<description>BharatKosh-NTRP Integration with NCCS</description>
+	<properties>
+		<java.version>11</java.version>
+		<jaxb-api.version>2.3.3</jaxb-api.version>
+        <jaxb-impl.version>2.3.4</jaxb-impl.version>
+	</properties>
+	<dependencies>
+		 <!-- https://wiki.eclipse.org/EclipseLink/Examples/MOXy -->
+        <dependency>
+            <groupId>org.eclipse.persistence</groupId>
+            <artifactId>org.eclipse.persistence.moxy</artifactId>
+            <version>3.0.0</version>
+        </dependency>
+		
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-devtools</artifactId>
+			<scope>runtime</scope>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		
+		
+		
+		<!-- JAXB API only -->
+        <!--<dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>3.0.0</version>
+        </dependency>-->
+		
+		<!-- JAXB API only -->
+  <dependency>
+      <groupId>jakarta.xml.bind</groupId>
+      <artifactId>jakarta.xml.bind-api</artifactId>
+      <version>3.0.0</version>
+  </dependency>
+
+  <!-- JAXB RI, Jakarta XML Binding -->
+  <dependency>
+      <groupId>com.sun.xml.bind</groupId>
+      <artifactId>jaxb-impl</artifactId>
+      <version>3.0.0</version>
+      <scope>runtime</scope>
+  </dependency>
+		
+		
+	</dependencies>
+
+	<!--<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>-->
+	
+	
+	
+	
+	
+	
+	<build>
+        <finalName>java-xml</finalName>
+        <plugins>
+           <plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>3.2.0</version>
+                <executions>
+                    <execution>
+                        <id>copy-resources</id>
+                        <!-- here the phase you need -->
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>copy-resources</goal>
+                        </goals>
+                        <configuration>
+                            <outputDirectory>${basedir}/target/classes/com/rahul/xml/jaxb/model</outputDirectory>
+                            <resources>
+                                <resource>
+                                    <directory>src/main/java/com/cdot/dao/jaxb/</directory>
+                                    <include>jaxb.properties</include>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+	
+
+</project>
